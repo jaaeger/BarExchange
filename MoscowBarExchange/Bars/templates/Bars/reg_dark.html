@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Регистрация</title>
+        <link rel="stylesheet" href="{% static 'css/main_dark.css' %}">
+    </head>
+    <body class="body2">
+        <div class="ex">
+            <a href="{% url 'home_dark' %}">
+                <img class="exit" src="{% static 'image/exit.png' %}" alt="">
+            </a>
+        </div>
+        <article class="cont3">
+            <div class="block">
+                <section class="block_item block-item">
+                    <h2 class="block_item-title">У вас есть аккаунт?</h2>
+                    <button class="block_item-btn signin-btn">Войти</button>
+                </section>
+                <section class="block_item block-item">
+                    <h2 class="block_item-title">У вас нет аккаунта?</h2>
+                    <button class="block_item-btn signup-btn">Зарегистрироваться</button>
+                </section>
+            </div>
+            <div class="formbox">
+                <form action="" class="form form_signin" method = "post">
+                    <h3 class="form_title">Вход</h3>
+                    {% csrf_token %}
+                    <label for="id_username">Логин:</label>
+                    <input type="text" name="username" class="form-control" maxlength="150" required="" id="id_username">
+                    <label for="id_password">Пароль:</label>
+                    <input type="password" name="password" class="form-control" required="" id="id_password">
+                    <button type="submit" name="sign_in" class="form_btn">Войти</button>
+                </form>
+                <form action="" class="form form_signup" method="post">
+                    <h3 class="form_title">Регистрация</h3>
+                    {% csrf_token %}
+                    <label for="id_username1">Логин:</label>
+                    <input type="text" name="username" class="form-control" maxlength="150" required="" id="id_username1">
+                    <label for="id_email">Почта:</label>
+                    <input type="email" name="email" class="form-control" required="" id="id_email">
+                    <label for="id_password1">Пароль:</label>
+                    <input type="password" name="password1" class="form-control" required="" id="id_password1">
+                    <label for="id_password2">Повторить пароль:</label>
+                    <input type="password" name="password2" class="form-control" required="" id="id_password2">
+                    <button type="submit" name="sign_up" class="form_btn">Зарегистрироваться</button>
+                </form>
+
+            </div>
+        </article>
+    <script src="{% static 'js/script.js' %}"></script>
+    </body>
+    </html>

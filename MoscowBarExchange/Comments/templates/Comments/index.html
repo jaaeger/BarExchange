@@ -1,0 +1,276 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="head">
+        <a href="{% url 'comments_dark' bar.id %}">
+            <input type="image" class="pop" src="{% static 'image/pop.svg' %}" alt="">
+        </a>
+        <div class="mesto"></div>
+        <nav class="navbar">
+            <div class="container">
+              <div class="navbar__wrap">
+                <div class="hamb">
+                  <div class="hamb__field" id="hamb">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                  </div>
+                </div>
+                <ul class="menu" id="menu">
+                  <li><a href="{% url 'home' %}">Главная</a></li>
+                  <li><a href="{% url 'about' %}">О нас</a></li>
+                    {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Выход</a></li>
+                    {% else %}
+                    <li><a href="{% url 'register' %}">Авторизация/Регистрация</a></li>
+                    {% endif %}
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <div class="popup" id="popup"></div>
+        <p class="head-title">MBarExchange</p>
+        <div class="ing">
+           <p><a href="{% url 'home' %}"> Главная</a></p>
+            <p><a href="{% url 'about' %}"> О нас </a></p>
+        </div>
+        {% if request.user.is_authenticated %}
+        <p class="WoW">Добро пожаловать, {{ user.username }} / <a href="{% url 'logout' %}">Выход</a></p>
+        {% else %}
+        <p class="WoW"> <a href="{% url 'register' %}">Авторизация/Регистрация</a></p>
+        {% endif %}
+    </div>
+    <div class="port">
+        <div class="cont">
+            <div class="cs">
+                {% if bar.photo %}
+                    <img class="cr1" src="{{ bar.photo.url }}" alt="">
+                {% endif %}
+                <h4 class="gachi">
+                    <p class="pp">Название:</p>
+                    <p class="pp2">"{{ bar.title }}"</p>
+                    <p class="pp">Рейтинг:</p>
+                    <p class="pp2">
+                        <div class="simple_rating1">
+                            <div class="simple_rating_items1">
+                                {% if bar.sum_rate == 5 %}
+                                <input id="simple_rating_55" type="radio" class="simple_rating_item1" disabled checked name="simple_rating1" value="5">
+                                <label for="simple_rating_55" class="simple_rating_label1"></label>
+                                <input id="simple_rating_45" type="radio" class="simple_rating_item1"disabled name="simple_rating1" value="4">
+                                <label for="simple_rating_45" class="simple_rating_label1"></label>
+                                <input id="simple_rating_35" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="3">
+                                <label for="simple_rating_35" class="simple_rating_label1"></label>
+                                <input id="simple_rating_25" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="2">
+                                <label for="simple_rating_25" class="simple_rating_label1"></label>
+                                <input id="simple_rating_15" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="1">
+                                <label for="simple_rating_15" class="simple_rating_label1"></label>
+                                {% elif bar.sum_rate == 4  %}
+                                <input id="simple_rating_54" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="5">
+                                <label for="simple_rating_54" class="simple_rating_label1"></label>
+                                <input id="simple_rating_44" type="radio" class="simple_rating_item1"disabled checked name="simple_rating1" value="4">
+                                <label for="simple_rating_44" class="simple_rating_label1"></label>
+                                <input id="simple_rating_34" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="3">
+                                <label for="simple_rating_34" class="simple_rating_label1"></label>
+                                <input id="simple_rating_24" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="2">
+                                <label for="simple_rating_24" class="simple_rating_label1"></label>
+                                <input id="simple_rating_14" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="1">
+                                <label for="simple_rating_14" class="simple_rating_label1"></label>
+                                {% elif bar.sum_rate == 3  %}
+                                <input id="simple_rating_53" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="5">
+                                <label for="simple_rating_53" class="simple_rating_label1"></label>
+                                <input id="simple_rating_43" type="radio" class="simple_rating_item1"disabled name="simple_rating1" value="4">
+                                <label for="simple_rating_43" class="simple_rating_label1"></label>
+                                <input id="simple_rating_33" type="radio" class="simple_rating_item1" disabled checked name="simple_rating1" value="3">
+                                <label for="simple_rating_33" class="simple_rating_label1"></label>
+                                <input id="simple_rating_23" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="2">
+                                <label for="simple_rating_23" class="simple_rating_label1"></label>
+                                <input id="simple_rating_13" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="1">
+                                <label for="simple_rating_13" class="simple_rating_label1"></label>
+                                {% elif bar.sum_rate == 2  %}
+                                <input id="simple_rating_52" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="5">
+                                <label for="simple_rating_52" class="simple_rating_label1"></label>
+                                <input id="simple_rating_42" type="radio" class="simple_rating_item1"disabled name="simple_rating1" value="4">
+                                <label for="simple_rating_42" class="simple_rating_label1"></label>
+                                <input id="simple_rating_32" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="3">
+                                <label for="simple_rating_32" class="simple_rating_label1"></label>
+                                <input id="simple_rating_22" type="radio" class="simple_rating_item1" disabled checked name="simple_rating1" value="2">
+                                <label for="simple_rating_22" class="simple_rating_label1"></label>
+                                <input id="simple_rating_12" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="1">
+                                <label for="simple_rating_12" class="simple_rating_label1"></label>
+                                {% elif bar.sum_rate == 1  %}
+                                <input id="simple_rating_51" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="5">
+                                <label for="simple_rating_51" class="simple_rating_label1"></label>
+                                <input id="simple_rating_41" type="radio" class="simple_rating_item1"disabled name="simple_rating1" value="4">
+                                <label for="simple_rating_41" class="simple_rating_label1"></label>
+                                <input id="simple_rating_31" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="3">
+                                <label for="simple_rating_31" class="simple_rating_label1"></label>
+                                <input id="simple_rating_21" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="2">
+                                <label for="simple_rating_21" class="simple_rating_label1"></label>
+                                <input id="simple_rating_11" type="radio" class="simple_rating_item1" disabled checked name="simple_rating1" value="1">
+                                <label for="simple_rating_11" class="simple_rating_label1"></label>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </p>
+                    <p class="pp">Адрес:</p>
+                    <p class="pp2">{{ bar.address }}</p>
+                    <p class="pp">Рабочее время:</p>
+                    <p class="pp2">{{ bar.work_time }}</p>
+                    <p class="pp">Средний чек:</p>
+                    <p class="pp2">От {{ bar.average_check }}р.</p>
+                </h4>
+            </div>
+            <h5  class="pp3">Описание:</h5>
+            <p class="ops">{{ bar.content }}
+            </p>
+            {% if request.user.is_authenticated %}
+            <h5 class="Com_title">Комментарии</h5>
+            <form action="{% url 'comments' bar.id %}" class="Com" method="post">
+                {% csrf_token %}
+                <p>
+                    {{ user.username }}
+                <ul id="id_rate">
+                    <div class="simple_rating">
+                        <div class="simple_rating_items">
+                            <input id="simple_rating_5" type="radio" class="simple_rating_item" name="rate" value="5">
+                            <label for="simple_rating_5" class="simple_rating_label"></label>
+                            <input id="simple_rating_4" type="radio" class="simple_rating_item" name="rate" value="4">
+                            <label for="simple_rating_4" class="simple_rating_label"></label>
+                            <input id="simple_rating_3" type="radio" class="simple_rating_item" name="rate" value="3">
+                            <label for="simple_rating_3" class="simple_rating_label"></label>
+                            <input id="simple_rating_2" type="radio" class="simple_rating_item" name="rate" value="2">
+                            <label for="simple_rating_2" class="simple_rating_label"></label>
+                            <input id="simple_rating_1" type="radio" class="simple_rating_item" name="rate" value="1">
+                            <label for="simple_rating_1" class="simple_rating_label"></label>
+                        </div>
+                    </div>
+                </p>
+                    </ul>
+
+                <p>
+                    <label for="id_content">Текст:</label>
+                        <textarea name="content" cols="40" rows="5" class="form-control" id="id_content"></textarea>
+                </p>
+                <p>
+                    <input type="submit" class="formcom5" placeholder="Отправить">
+                </p>
+            </form>
+            {% endif %}
+
+            <h5 class="Com_title">Комментарии</h5>
+            {% for item in comments %}
+            <form action="" class="Com">
+                <p>
+                    {{ item.user.username }}
+                <div class="simple_rating1">
+
+                <div class="simple_rating_items1">
+                                {% if item.rate == 5 %}
+                                <input id="simple_rating_55{{ item.content }}" type="radio" class="simple_rating_item1" disabled checked name="simple_rating1" value="5">
+                                <label for="simple_rating_55{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_45{{ item.content }}" type="radio" class="simple_rating_item1"disabled name="simple_rating1" value="4">
+                                <label for="simple_rating_45{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_35{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="3">
+                                <label for="simple_rating_35{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_25{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="2">
+                                <label for="simple_rating_25{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_15{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="1">
+                                <label for="simple_rating_15{{ item.content }}" class="simple_rating_label1"></label>
+                                {% elif item.rate == 4  %}
+                                <input id="simple_rating_54{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="5">
+                                <label for="simple_rating_54{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_44{{ item.content }}" type="radio" class="simple_rating_item1"disabled checked name="simple_rating1" value="4">
+                                <label for="simple_rating_44{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_34{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="3">
+                                <label for="simple_rating_34{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_24{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="2">
+                                <label for="simple_rating_24{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_14{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="1">
+                                <label for="simple_rating_14{{ item.content }}" class="simple_rating_label1"></label>
+                                {% elif item.rate == 3  %}
+                                <input id="simple_rating_53{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="5">
+                                <label for="simple_rating_53{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_43{{ item.content }}" type="radio" class="simple_rating_item1"disabled name="simple_rating1" value="4">
+                                <label for="simple_rating_43{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_33{{ item.content }}" type="radio" class="simple_rating_item1" disabled checked name="simple_rating1" value="3">
+                                <label for="simple_rating_33{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_23{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="2">
+                                <label for="simple_rating_23{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_13{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="1">
+                                <label for="simple_rating_13{{ item.content }}" class="simple_rating_label1"></label>
+                                {% elif item.rate == 2  %}
+                                <input id="simple_rating_52{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="5">
+                                <label for="simple_rating_52{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_42{{ item.content }}" type="radio" class="simple_rating_item1"disabled name="simple_rating1" value="4">
+                                <label for="simple_rating_42{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_32{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="3">
+                                <label for="simple_rating_32{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_22{{ item.content }}" type="radio" class="simple_rating_item1" disabled checked name="simple_rating1" value="2">
+                                <label for="simple_rating_22{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_12{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="1">
+                                <label for="simple_rating_12{{ item.content }}" class="simple_rating_label1"></label>
+                                {% elif item.rate == 1  %}
+                                <input id="simple_rating_51{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="5">
+                                <label for="simple_rating_51{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_41{{ item.content }}" type="radio" class="simple_rating_item1"disabled name="simple_rating1" value="4">
+                                <label for="simple_rating_41{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_31{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="3">
+                                <label for="simple_rating_31{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_21{{ item.content }}" type="radio" class="simple_rating_item1" disabled name="simple_rating1" value="2">
+                                <label for="simple_rating_21{{ item.content }}" class="simple_rating_label1"></label>
+                                <input id="simple_rating_11{{ item.content }}" type="radio" class="simple_rating_item1" disabled checked name="simple_rating1" value="1">
+                                <label for="simple_rating_11{{ item.content }}" class="simple_rating_label1"></label>
+                                {% endif %}
+                            </div>
+
+            </div>
+                </p>
+                <p>
+                    {{ item.content }}
+                </p>
+                <p>
+                    {% if item.updated_at != item.created_at %}
+                                Комментарий обновлён {{ item.updated_at }}
+                            {% else %}
+                                Комментарий создан {{ item.created_at }}
+                            {% endif %}
+                </p>
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="foot">
+        <div class="conti">
+            <div class="foot-row">
+                <div class="foot-copy">
+                    <div class="foot-name">
+                        Ⓒ‎ Команда ИСиТ1-2б
+                        <p>Все права защищены</p>
+                    </div>
+                </div>
+                <div class="kring">
+                    <a href="https://vk.com/ja_eger">
+                        Тех. Поддержка
+                    </a>
+                    <a href="https://www.consultant.ru/document/cons_doc_LAW_61801/">Закон о защите персональных данных</a>
+                </div>
+                <div>
+                    <img class="log" src="{% static 'image/logotip.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+     <script src="{% static 'js/script2.js' %}"></script>
+</body>
+</html>
